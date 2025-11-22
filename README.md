@@ -1,1 +1,1 @@
-# samuract.github.io
+SAMURACT Groups
