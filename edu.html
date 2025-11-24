@@ -1,44 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Education</title>
-
-<!-- CMU Sans Serif Font CDN -->
-<link href="https://cdn.jsdelivr.net/gh/aa-m-sa/cm-unicode/webfonts/cmun-sans.css" rel="stylesheet">
-
-<style>
-  body {
-    font-family: "CMU Sans Serif", sans-serif;
-    padding: 20px;
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-
-  li {
-    margin-bottom: 6px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - Chengappa Thumisi</title>
+    <!-- CMU Sans Serif Font CDN -->
+    <link href="https://cdn.jsdelivr.net/gh/aa-m-sa/cm-unicode/webfonts/cmun-sans.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #0099cc;
+            --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text-color: #e2e8f0;
+            --accent-color: #fff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "CMU Sans Serif", sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 0 40px;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px var(--primary-color)); }
+            to { filter: drop-shadow(0 0 20px var(--primary-color)); }
+        }
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin: 60px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: var(--transition);
+        }
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        .timeline-item:nth-child(even) {
+            left: -100px;
+        }
+        .timeline-item:nth-child(odd) .content {
+            text-align: right;
+            padding-right: 60px;
+        }
+        .timeline-item:nth-child(even) .content {
+            text-align: left;
+            padding-left: 60px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-badge {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            z-index: 1;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        .timeline-badge i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 212, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+        }
+        .content {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: var(--transition);
+            position: relative;
+        }
+        .content:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+        .degree {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .degree i {
+            font-size: 1.5rem;
+        }
+        .institution {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        .location {
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item .content {
+                text-align: left !important;
+                padding-left: 60px !important;
+                padding-right: 20px !important;
+            }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="hero">
+            <h1>Educational Journey</h1>
+        </div>
 
-<h1>Education</h1>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-crown"></i>
+                        M.Sc. Physics
+                    </div>
+                    <div class="institution">Sri Venkateswara University</div>
+                    <div class="location">Tirupati, Andhra Pradesh</div>
+                </div>
+            </div>
 
-<ul>
-  <li>M.Sc. Physics from Sri Venkateswara University, Tirupati, Andhra Pradesh</li>
-  <li>P.G.D.C.A. from Tech Edge Solutions, Palamaner, Andhra Pradesh</li>
-  <li>B.Sc. Physics from Sri Venkateswara University, Tirupati, Andhra Pradesh</li>
-  <li>H.S.E. (M.P.C) from Board of Intermediate Education, Andhra Pradesh</li>
-  <li>S.S.C. (M.P.C) from Board of Secondary Education, Andhra Pradesh</li>
-</ul>
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-laptop-code"></i>
+                        P.G.D.C.A.
+                    </div>
+                    <div class="institution">Tech Edge Solutions</div>
+                    <div class="location">Palamaner, Andhra Pradesh</div>
+                </div>
+            </div>
 
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-book"></i>
+                        B.Sc. Physics
+                    </div>
+                    <div class="institution">Sri Venkateswara University</div>
+                    <div class="location">Tirupati, Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-chart-line"></i>
+                        H.S.E. (M.P.C)
+                    </div>
+                    <div class="institution">Board of Intermediate Education</div>
+                    <div class="location">Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-star"></i>
+                        S.S.C. (M.P.C)
+                    </div>
+                    <div class="institution">Board of Secondary Education</div>
+                    <div class="location">Andhra Pradesh</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Building a foundation in Physics and Technology for groundbreaking research.</p>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for timeline animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth scroll and particle effect on hover (advanced: canvas particles)
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '-1';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        function createParticles(x, y) {
+            for (let i = 0; i < 5; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.5) * 10,
+                    life: 1,
+                    decay: Math.random() * 0.02 + 0.01
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.life * 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 212, 255, ${p.life})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= p.decay;
+                if (p.life <= 0) particles.splice(i, 1);
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        document.querySelectorAll('.content').forEach(content => {
+            content.addEventListener('mouseenter', (e) => {
+                const rect = content.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
-
