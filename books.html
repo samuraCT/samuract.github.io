@@ -1,82 +1,317 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT-AMES e-Books Library</title>
+    <!-- CMU Sans Serif Font CDN -->
+    <link href="https://cdn.jsdelivr.net/gh/aa-m-sa/cm-unicode/webfonts/cmun-sans.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "CMU Sans Serif", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color-light));
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-title i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        .book-list {
+            list-style: none;
+        }
+        .book-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color-light);
+            transition: background 0.3s ease, padding-left 0.3s ease;
+        }
+        .book-item:hover {
+            background: var(--accent-color-light);
+            padding-left: 20px;
+            border-left-width: 6px;
+        }
+        .book-link {
+            text-decoration: none;
+            color: #34495e;
+            font-weight: 500;
+            display: block;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .book-link:hover {
+            color: var(--accent-color);
+        }
+        .book-link i {
+            margin-right: 8px;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+        /* Category-specific colors */
+        .personal { --accent-color: #e74c3c; --accent-color-light: #f1948a; }
+        .health { --accent-color: #27ae60; --accent-color-light: #a9dfbf; }
+        .wealth { --accent-color: #f39c12; --accent-color-light: #f8c471; }
+        .science { --accent-color: #3498db; --accent-color-light: #85c1e9; }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .categories-grid { grid-template-columns: 1fr; gap: 20px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
 <body>
-    <body style="font-family:CMU Sans Serif">
-<style>
-* {
-  box-sizing: border-box;
-}
+    <div class="container">
+        <h1>CT-AMES</h1>
+        <p class="subtitle">e-Books Library</p>
+        
+        <div class="categories-grid">
+            <!-- Personal Management -->
+            <div class="category-card personal">
+                <h2 class="category-title">
+                    <i class="fas fa-user-tie"></i>
+                    Personal Management
+                </h2>
+                <ul class="book-list">
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1OHaB_KrjB9xrvVAKF8YAi97_AAjaR5H0/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Fountain Head
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1WQS1ZqocVAQrFT8YTUE2Zkt7FLV_sKJU/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Power of Habit
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/12qDLzUKqAdh4PFb9bJv4IOFFfFqvRgix/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Seven Habits of Highly Effective People
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1zurmNekeAEUtWTTYoqeDonDc_J_z6g9w/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Secrets of Millionaire Mind
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1ad01oaz0Rg2Gya5RBiweFt72Iny-H9EA/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Joys of Compounding
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-/* Create four equal columns and two equal rows that floats next to each other */
-.column {
-  float: left;
-  width: 25%;
-  padding: 20px;
-  height: 1000px; 
-}
+            <!-- Health Management -->
+            <div class="category-card health">
+                <h2 class="category-title">
+                    <i class="fas fa-heartbeat"></i>
+                    Health Management
+                </h2>
+                <ul class="book-list">
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1g0pYWvkL7NYxDq_pMtK-dCEeWlCbL8H9/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Complete Guide to Fasting: Heal Your Body Through Intermittent, Alternate-Day, and Extended Fasting
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1f8XkdGyPVdM6IzyN2ERH4MviQLXEw90I/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Diabetes Code: Prevent and Reverse Type 2 Diabetes Naturally
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1UQo-Ohua7MQu1Xu074-gtNY68cNoHsa3/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Longevity Solution: Rediscovering Centuries-Old Secrets to a Healthy, Long Life
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/127OGciWu3Wnt5Djju7Rlwfrrv4zb_2cz/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>The Obesity Code: Unlocking the Secrets of Weight Loss
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-</style>
-<h2><center>CT- AMES </center></h2>
-<h2><center> e-Books </center></h2>
+            <!-- Wealth Management -->
+            <div class="category-card wealth">
+                <h2 class="category-title">
+                    <i class="fas fa-coins"></i>
+                    Wealth Management
+                </h2>
+                <ul class="book-list">
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1NP0gfIUK8MIPzE4inZLAMzfld9wrzu-_/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Social Marketing in Action
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1z5s9C7uHs4nt6qMjhe8QecDd1LiBnsx1/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Managing Sustainable Business
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1iNx2JT-7-kJyza1RbyQBoEPg8xziewY0/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>International Business Management
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1zP8esDAmOIBoq9i1LnJb3FeCokPw-Xa8/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Global Supply Chain and Operations Management
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1XcS6YeiZJX22h19SAh79JvFzLrDCBfhk/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Excel Data Analysis
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/10kO67K6Ua2n6YD99m30ilu-TvFJx8heY/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>A Concise Guide to Market Research
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1PAE16uLxYpizLz91sqBe5tTHD78LYWET/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Entertainment Science
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1zPCuYSY_yV6_wTUvWzP68sSvkOB4b_xk/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Digital Business Models
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1vZ0EUJgPPYPKXd0itVKiFYDULPFfTMWV/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Travel Marketing, Tourism Economics and the Airline Product
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-<div class="row">
-  <div class="column" style="background-color:#FFF8DC;">
-    <h2>Personal Management</h2>
-   
-   </li>
-   <li><a href="https://drive.google.com/file/d/1OHaB_KrjB9xrvVAKF8YAi97_AAjaR5H0/view?usp=sharing">The Fountain Head</a></li>
- 
-  <li><a href=" https://drive.google.com/file/d/1WQS1ZqocVAQrFT8YTUE2Zkt7FLV_sKJU/view?usp=sharing">The Power of Habit</a></li>
-  
-  <li><a href=" https://drive.google.com/file/d/12qDLzUKqAdh4PFb9bJv4IOFFfFqvRgix/view?usp=sharing">The Seven Habits of Highly effective People</a></li>
-   <li><a href="  https://drive.google.com/file/d/1zurmNekeAEUtWTTYoqeDonDc_J_z6g9w/view?usp=sharing">The Secrets of Millionaire Mind</a></li>
-     <li><a href=" https://drive.google.com/file/d/1ad01oaz0Rg2Gya5RBiweFt72Iny-H9EA/view?usp=sharing">The Joys of Compounding</a></li>
-  
-    
-  </div>
-  <div class="column" style="background-color:#FFE4C4;">
-    <h2> Health Management</h2>
-   <li><a href="   https://drive.google.com/file/d/1g0pYWvkL7NYxDq_pMtK-dCEeWlCbL8H9/view?usp=sharing">  The Complete Guide to Fasting_ Heal Your Body Through Intermittent, Alternate-Day, and Extended Fasting </a></li> 
-  <li><a href="   https://drive.google.com/file/d/1f8XkdGyPVdM6IzyN2ERH4MviQLXEw90I/view?usp=sharing"> The Diabetes Code_ Prevent and Reverse Type 2 Diabetes Naturally  </a></li> 
-  <li><a href="   https://drive.google.com/file/d/1UQo-Ohua7MQu1Xu074-gtNY68cNoHsa3/view?usp=sharing"> The Longevity Solution_ Rediscovering Centuries-Old Secrets to a Healthy, Long Life .pdf </a></li> 
-  <li><a href="   https://drive.google.com/file/d/127OGciWu3Wnt5Djju7Rlwfrrv4zb_2cz/view?usp=sharing"> The Obesity Code_ Unlocking the Secrets of Weight Loss .pdf </a></li> 
-  
-  </div>
-  <div class="column" style="background-color:#FFF8DC;">
-    <h2>Wealth Management</h2>
-    <li><a href="  https://drive.google.com/file/d/1NP0gfIUK8MIPzE4inZLAMzfld9wrzu-_/view?usp=sharing">Social Marketing in Action</a></li>
-  <li><a href="   https://drive.google.com/file/d/1z5s9C7uHs4nt6qMjhe8QecDd1LiBnsx1/view?usp=sharing">  Managing Sustainable Business</a></li>
-  <li><a href="   https://drive.google.com/file/d/1iNx2JT-7-kJyza1RbyQBoEPg8xziewY0/view?usp=sharing">  International Business
-Management</a></li>
- <li><a href="   https://drive.google.com/file/d/1zP8esDAmOIBoq9i1LnJb3FeCokPw-Xa8/view?usp=sharing">  Global Supply Chain and
-Operations Management</a></li>
- <li><a href="    https://drive.google.com/file/d/1XcS6YeiZJX22h19SAh79JvFzLrDCBfhk/view?usp=sharing">  Excel Data Analysis</a></li>
-     <li><a href="    https://drive.google.com/file/d/10kO67K6Ua2n6YD99m30ilu-TvFJx8heY/view?usp=sharing">   A Concise Guide to
-Market Research</a></li>
-    <li><a href="    https://drive.google.com/file/d/1PAE16uLxYpizLz91sqBe5tTHD78LYWET/view?usp=sharing">  Entertainment Science</a></li>
-    <li><a href="    https://drive.google.com/file/d/1zPCuYSY_yV6_wTUvWzP68sSvkOB4b_xk/view?usp=sharing">  Digital Business Models</a></li>
-   <li><a href="    https://drive.google.com/file/d/1vZ0EUJgPPYPKXd0itVKiFYDULPFfTMWV/view?usp=sharing">  Travel Marketing, Tourism
-Economics and the Airline
-Product</a></li> 
-      </div>
-<div class="column" style="background-color:#FFE4C4;">
-    <h2>Science</h2>
-   <li><a href="https://drive.google.com/file/d/1AjJzHQixl96SVWHOv555rpKX_lzRnRK6/view?usp=sharing"> Fundamentals of Molecular Spectroscopy</a></li>
-     <li><a href="https://drive.google.com/file/d/1ByGsuxg2MY6NudgUeogWQX7AcEqbwjOC/view?usp=sharing">Infrared Spectroscopy</a></li>
-    <li><a href="https://drive.google.com/file/d/1qNp-jE4iwkIUHgyvtrXBGn9RU2YMfy1e/view?usp=sharing">  Handbook of Microscopy</a></li>
-     <li><a href="https://drive.google.com/file/d/1-01DqjlxYORBk1jvK3WtUJEwXeejCg56/view?usp=sharing">  Hands-on Electronics</a></li>
-<li><a href="https://drive.google.com/file/d/1_-8AeXAP3dkdJrtlp8hqxz3oShJ_0bwG/view?usp=sharing"> Basic Transistors</a></li>
- <li><a href="   https://drive.google.com/file/d/1UDPiycehAE34l5jBUS6ElUj94-GrKE9-/view?usp=sharing">  Electronic
-Devices</a></li>
-     <li><a href="   https://drive.google.com/file/d/16boGbniIbHf181SSkP37M5ZTZWhkvTau/view?usp=sharing">  Introduction to Magnetic materials</a></li>
-    <li><a href="   https://drive.google.com/file/d/1Ec5c9D2wk1V6b1QtjDw43CKTouMDaPmy/view?usp=sharing">  Diffraction of Light</a></li> 
-   <li><a href="   https://manjunath5496.github.io/">  Manjunath Collection of Books</a></li>   
+            <!-- Science -->
+            <div class="category-card science">
+                <h2 class="category-title">
+                    <i class="fas fa-flask"></i>
+                    Science
+                </h2>
+                <ul class="book-list">
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1AjJzHQixl96SVWHOv555rpKX_lzRnRK6/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Fundamentals of Molecular Spectroscopy
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1ByGsuxg2MY6NudgUeogWQX7AcEqbwjOC/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Infrared Spectroscopy
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1qNp-jE4iwkIUHgyvtrXBGn9RU2YMfy1e/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Handbook of Microscopy
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1-01DqjlxYORBk1jvK3WtUJEwXeejCg56/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Hands-on Electronics
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1_-8AeXAP3dkdJrtlp8hqxz3oShJ_0bwG/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Basic Transistors
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1UDPiycehAE34l5jBUS6ElUj94-GrKE9-/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Electronic Devices
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/16boGbniIbHf181SSkP37M5ZTZWhkvTau/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Introduction to Magnetic Materials
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://drive.google.com/file/d/1Ec5c9D2wk1V6b1QtjDw43CKTouMDaPmy/view?usp=sharing" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Diffraction of Light
+                        </a>
+                    </li>
+                    <li class="book-item">
+                        <a href="https://manjunath5496.github.io/" class="book-link" target="_blank">
+                            <i class="fas fa-book"></i>Manjunath Collection of Books
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 CT-AMES. Explore knowledge, one book at a time.</p>
+        </div>
+    </div>
 </body>
-
 </html>
-
