@@ -191,12 +191,11 @@
         </div>
 
         <div class="timeline">
+            <!-- Fixed syntax error below: wrapped content correctly inside timeline-item -->
             <div class="timeline-item">
                 <div class="timeline-badge">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
-                 
-            </div>
                 <div class="content">
                     <div class="degree">
                         <i class="fas fa-crown"></i>
@@ -270,7 +269,6 @@
     </div>
 
     <script>
-        // Intersection Observer for timeline animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -283,12 +281,10 @@
             });
         }, observerOptions);
 
-        // Observe timeline items
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
 
-        // Smooth scroll and particle effect on hover (advanced: canvas particles)
         const canvas = document.createElement('canvas');
         canvas.style.position = 'fixed';
         canvas.style.top = '0';
