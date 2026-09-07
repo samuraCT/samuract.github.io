@@ -32,13 +32,13 @@
             overflow-x: hidden;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
         .hero {
             text-align: center;
-            padding: 80px 0 40px;
+            padding: 60px 0 30px;
             position: relative;
         }
         .hero h1 {
@@ -54,10 +54,11 @@
             from { filter: drop-shadow(0 0 5px var(--primary-color)); }
             to { filter: drop-shadow(0 0 20px var(--primary-color)); }
         }
+        
+        /* Central Connected Timeline Line */
         .timeline {
             position: relative;
             padding: 40px 0;
-            max-width: 600px;
             margin: 0 auto;
         }
         .timeline::before {
@@ -66,82 +67,122 @@
             left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
+            width: 4px;
             background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
             transform: translateX(-50%);
-            box-shadow: 0 0 10px var(--primary-color);
+            box-shadow: 0 0 12px var(--primary-color);
+            border-radius: 2px;
         }
+
         .timeline-item {
             position: relative;
-            margin: 60px 0;
+            margin: 40px 0;
+            width: 50%;
             opacity: 0;
-            transform: translateY(50px);
             transition: var(--transition);
         }
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+
+        /* Alternate cards to left and right */
         .timeline-item:nth-child(odd) {
             left: 0;
+            padding-right: 45px;
         }
         .timeline-item:nth-child(even) {
-            left: -100px;
+            left: 50%;
+            padding-left: 45px;
         }
-        .timeline-item:nth-child(odd) .content {
-            text-align: right;
-            padding-right: 60px;
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0) !important;
         }
-        .timeline-item:nth-child(even) .content {
-            text-align: left;
-            padding-left: 60px;
+        .timeline-item:nth-child(odd):not(.animate) {
+            transform: translateX(-50px);
         }
-        .timeline-item:last-child {
-            margin-bottom: 0;
+        .timeline-item:nth-child(even):not(.animate) {
+            transform: translateX(50px);
         }
+
+        /* Centralized Node Badges */
         .timeline-badge {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
+            top: 20px;
+            width: 44px;
+            height: 44px;
+            background: #0f2027;
+            border: 3px solid var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow);
-            z-index: 1;
-            transition: var(--transition);
+            box-shadow: 0 0 15px var(--primary-color);
+            z-index: 2;
             animation: pulse 2s infinite;
         }
-        .timeline-badge i {
-            font-size: 1.2rem;
-            color: var(--accent-color);
+        .timeline-item:nth-child(odd) .timeline-badge {
+            right: -22px;
         }
+        .timeline-item:nth-child(even) .timeline-badge {
+            left: -22px;
+        }
+
+        .timeline-badge i {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(0, 212, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
         }
+
+        /* Content Cards with Pointed Arrow Connectors */
         .content {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 20px 30px;
+            padding: 20px 25px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.3);
             transition: var(--transition);
             position: relative;
         }
-        .content:hover {
-            transform: scale(1.02);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        .timeline-item:nth-child(odd) .content {
+            text-align: right;
         }
+        .timeline-item:nth-child(even) .content {
+            text-align: left;
+        }
+
+        /* Connector arrows pointing to central line */
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .timeline-item:nth-child(odd) .content::before {
+            right: -12px;
+            border-width: 10px 0 10px 12px;
+            border-color: transparent transparent transparent rgba(0, 212, 255, 0.4);
+        }
+        .timeline-item:nth-child(even) .content::before {
+            left: -12px;
+            border-width: 10px 12px 10px 0;
+            border-color: transparent rgba(0, 212, 255, 0.4) transparent transparent;
+        }
+
+        .content:hover {
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3);
+        }
+
         .degree {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 5px;
@@ -149,16 +190,23 @@
             align-items: center;
             gap: 10px;
         }
+        .timeline-item:nth-child(odd) .degree {
+            justify-content: flex-end;
+        }
+        .timeline-item:nth-child(even) .degree {
+            justify-content: flex-start;
+        }
+
         .degree i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         .institution {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
         .location {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #a0a0a0;
             font-style: italic;
         }
@@ -168,19 +216,39 @@
             color: #a0a0a0;
             font-size: 1rem;
         }
+
+        /* Responsive Mobile Layout (Single Column Stack) */
         @media (max-width: 768px) {
             .timeline::before {
-                left: 20px;
+                left: 30px;
             }
-            .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
-                left: 0;
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 0 !important;
             }
-            .timeline-item .content {
+            .timeline-item:nth-child(odd) .timeline-badge,
+            .timeline-item:nth-child(even) .timeline-badge {
+                left: 8px;
+                right: auto;
+            }
+            .timeline-item:nth-child(odd) .content,
+            .timeline-item:nth-child(even) .content {
                 text-align: left !important;
-                padding-left: 60px !important;
-                padding-right: 20px !important;
             }
-            .hero h1 { font-size: 2.5rem; }
+            .timeline-item:nth-child(odd) .degree,
+            .timeline-item:nth-child(even) .degree {
+                justify-content: flex-start !important;
+            }
+            .timeline-item:nth-child(odd) .content::before,
+            .timeline-item:nth-child(even) .content::before {
+                left: -12px;
+                right: auto;
+                border-width: 10px 12px 10px 0;
+                border-color: transparent rgba(0, 212, 255, 0.4) transparent transparent;
+            }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -191,7 +259,6 @@
         </div>
 
         <div class="timeline">
-            <!-- Fixed syntax error below: wrapped content correctly inside timeline-item -->
             <div class="timeline-item">
                 <div class="timeline-badge">
                     <i class="fas fa-graduation-cap"></i>
@@ -270,7 +337,7 @@
 
     <script>
         const observerOptions = {
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
         };
         const observer = new IntersectionObserver((entries) => {
@@ -302,8 +369,8 @@
                 particles.push({
                     x: x,
                     y: y,
-                    vx: (Math.random() - 0.5) * 10,
-                    vy: (Math.random() - 0.5) * 10,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: (Math.random() - 0.5) * 8,
                     life: 1,
                     decay: Math.random() * 0.02 + 0.01
                 });
