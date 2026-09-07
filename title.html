@@ -1,7 +1,58 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chengappa Thumisi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            /* Multi-color gradient background */
+            background: linear-gradient(-45deg, #ff007f, #7f00ff, #00d4ff, #00ff87, #ff0055);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        /* Smooth continuous color transition animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Card container to elevate text over dynamic background */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 60px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .title {
+            color: #800080;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
 <body>
-<center>
-<font color="#800080" size="5">CHENGAPPA THUMISI</font><p>&nbsp;</p>
-</center>
+
+    <div class="card">
+        <h1 class="title">CHENGAPPA THUMISI</h1>
+    </div>
+
 </body>
 </html>
