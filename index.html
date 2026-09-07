@@ -1,6 +1,16 @@
+<!DOCTYPE html>
 <html>
-<frameset cols="15%,*" frameborder"yes" border"3" bordercolor="Gray">
-<frame src="Links.html"name="Links" target="main">
-<frame src="main.html"name="main"target="main">
+<head>
+    <title>10% Title Page Layout</title>
+</head>
+<frameset rows="10%,90%" frameborder="yes" border="3" bordercolor="Gray">
+    <!-- Top frame taking up 10% for the title -->
+    <frame src="title.html" name="titleFrame" scrolling="no">
+    
+    <!-- Bottom nested frameset taking up the remaining 90% -->
+    <frameset cols="15%,*">
+        <frame src="Links.html" name="Links" target="main">
+        <frame src="main.html" name="main" target="main">
+    </frameset>
 </frameset>
 </html>
