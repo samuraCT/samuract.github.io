@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chengappa</title>
+    <title>Education - Chengappa Thumisi</title>
     <!-- CMU Sans Serif Font CDN -->
     <link href="https://cdn.jsdelivr.net/gh/aa-m-sa/cm-unicode/webfonts/cmun-sans.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #0284c7;
+            --secondary-color: #0369a1;
+            --bg-gradient: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --accent-color: #0f172a;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -16,240 +26,385 @@
         }
         body {
             font-family: "CMU Sans Serif", sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: #333;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        .profile-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hero {
             text-align: center;
-            max-width: 400px;
-            width: 100%;
-            transition: transform 0.3s ease;
-            animation: fadeIn 1s ease-out;
+            padding: 60px 0 30px;
+            position: relative;
         }
-        .profile-container:hover {
-            transform: scale(1.02);
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
         }
-        .profile-photo {
-            width: 250px;
-            height: 250px;
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 2px rgba(2, 132, 199, 0.2)); }
+            to { filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.4)); }
+        }
+        
+        /* Central Connected Timeline Line */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transform: translateX(-50%);
+            box-shadow: 0 0 6px rgba(2, 132, 199, 0.2);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            width: 50%;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        /* Alternate cards to left and right */
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 45px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 45px;
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+        .timeline-item:nth-child(odd):not(.animate) {
+            transform: translateX(-50px);
+        }
+        .timeline-item:nth-child(even):not(.animate) {
+            transform: translateX(50px);
+        }
+
+        /* Centralized Node Badges */
+        .timeline-badge {
+            position: absolute;
+            top: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border: 3px solid var(--primary-color);
             border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-        .profile-photo:hover {
-            transform: scale(1.05);
-        }
-        .name {
-            color: #800000;
-            font-weight: bold;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            animation: typewriter 2s steps(20) forwards;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #800000;
-        }
-        .title {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 5px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.5s forwards;
-        }
-        .department, .institute {
-            font-size: 1rem;
-            color: #777;
-            margin-bottom: 10px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.7s forwards;
-        }
-        .email-section {
-            margin: 20px 0;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.9s forwards;
-        }
-        .email-link {
-            color: #800000;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .email-link:hover {
-            color: #a52a2a;
-        }
-        h2 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin: 30px 0 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 1.1s forwards;
-        }
-        .social-links {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 1.3s forwards;
-        }
-        .social-link {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(2, 132, 199, 0.2);
+            z-index: 2;
+            animation: pulse 2s infinite;
         }
-        .social-link:hover {
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .timeline-item:nth-child(odd) .timeline-badge {
+            right: -22px;
         }
-        .social-link i {
-            transition: transform 0.3s ease;
+        .timeline-item:nth-child(even) .timeline-badge {
+            left: -22px;
         }
-        .social-link:hover i {
-            transform: scale(1.2);
+
+        .timeline-badge i {
+            font-size: 1.1rem;
+            color: var(--primary-color);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(2, 132, 199, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        /* Content Cards with Pointed Arrow Connectors */
+        .content {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+            position: relative;
         }
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
+        .timeline-item:nth-child(odd) .content {
+            text-align: right;
         }
-        @media (max-width: 480px) {
-            .profile-container { padding: 20px; }
-            .name { font-size: 1.5rem; }
-            .social-links { gap: 10px; }
-            .social-link { width: 45px; height: 45px; font-size: 1rem; }
+        .timeline-item:nth-child(even) .content {
+            text-align: left;
+        }
+
+        /* Connector arrows pointing to central line */
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .timeline-item:nth-child(odd) .content::before {
+            right: -12px;
+            border-width: 10px 0 10px 12px;
+            border-color: transparent transparent transparent #e2e8f0;
+        }
+        .timeline-item:nth-child(even) .content::before {
+            left: -12px;
+            border-width: 10px 12px 10px 0;
+            border-color: transparent #e2e8f0 transparent transparent;
+        }
+
+        .content:hover {
+            transform: scale(1.03);
+            background: #ffffff;
+            box-shadow: 0 12px 24px rgba(2, 132, 199, 0.12);
+            border-color: var(--primary-color);
+        }
+
+        .degree {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .timeline-item:nth-child(odd) .degree {
+            justify-content: flex-end;
+        }
+        .timeline-item:nth-child(even) .degree {
+            justify-content: flex-start;
+        }
+
+        .degree i {
+            font-size: 1.3rem;
+        }
+        .institution {
+            font-size: 1.05rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .location {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+            }
+            .timeline-item:nth-child(odd) .timeline-badge,
+            .timeline-item:nth-child(even) .timeline-badge {
+                left: 8px;
+                right: auto;
+            }
+            .timeline-item:nth-child(odd) .content,
+            .timeline-item:nth-child(even) .content {
+                text-align: left !important;
+            }
+            .timeline-item:nth-child(odd) .degree,
+            .timeline-item:nth-child(even) .degree {
+                justify-content: flex-start !important;
+            }
+            .timeline-item:nth-child(odd) .content::before,
+            .timeline-item:nth-child(even) .content::before {
+                left: -12px;
+                right: auto;
+                border-width: 10px 12px 10px 0;
+                border-color: transparent #e2e8f0 transparent transparent;
+            }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <img src="images/CT.jpg" alt="T. Chengappa Photo" class="profile-photo" width="250" height="250">
-        
-        <div class="name" id="name">T. CHENGAPPA</div>
-        
-        <div class="title">Senior Technical Superintendent</div>
-        <div class="department">Department of Physics</div>
-        <div class="institute">Indian Institute of Technology Hyderabad</div>
-        
-        <div class="email-section">
-            E-mail: 
-            <a href="mailto:chengappa.thumisi@phy.iith.ac.in" class="email-link">
-                chengappa.thumisi@phy.iith.ac.in
-            </a>
+    <div class="container">
+        <div class="hero">
+            <h1>Educational Journey</h1>
         </div>
-        
-        <h2>Connect with Me</h2>
-        <div class="social-links">
-            <a href="https://www.facebook.com/thectxfb" target="_blank" class="social-link" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/yourprofile" target="_blank" class="social-link" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.twitter.com/yourprofile" target="_blank" class="social-link" title="Twitter / X">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-link" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.youtube.com/@yourchannel" target="_blank" class="social-link" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://t.me/yourchannel" target="_blank" class="social-link" title="Telegram">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="social-link" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://www.github.com/yourprofile" target="_blank" class="social-link" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=YOURID" target="_blank" class="social-link" title="Google Scholar">
-                <i class="fas fa-graduation-cap"></i>
-            </a>
-            <a href="https://orcid.org/YOUR-ID" target="_blank" class="social-link" title="ORCID">
-                <i class="fas fa-id-badge"></i>
-            </a>
-            <a href="mailto:yourmail@example.com" class="social-link" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-crown"></i>
+                        M.Sc. Physics
+                    </div>
+                    <div class="institution">Sri Venkateswara University</div>
+                    <div class="location">Tirupati, Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-laptop-code"></i>
+                        P.G.D.C.A.
+                    </div>
+                    <div class="institution">Tech Edge Solutions</div>
+                    <div class="location">Palamaner, Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-book"></i>
+                        B.Sc. Physics
+                    </div>
+                    <div class="institution">Sri Venkateswara University</div>
+                    <div class="location">Tirupati, Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-chart-line"></i>
+                        H.S.E. (M.P.C)
+                    </div>
+                    <div class="institution">Board of Intermediate Education</div>
+                    <div class="location">Andhra Pradesh</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="content">
+                    <div class="degree">
+                        <i class="fas fa-star"></i>
+                        S.S.C. (M.P.C)
+                    </div>
+                    <div class="institution">Board of Secondary Education</div>
+                    <div class="location">Andhra Pradesh</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Building a foundation in Physics and Technology for groundbreaking research.</p>
         </div>
     </div>
 
     <script>
-        // Enhanced typewriter effect for name with cursor blink
-        const nameEl = document.getElementById('name');
-        const nameText = nameEl.textContent;
-        let i = 0;
-        function typeWriter() {
-            if (i < nameText.length) {
-                nameEl.textContent = nameText.substring(0, i + 1);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                nameEl.style.borderRight = 'none';
-            }
-        }
-        typeWriter();
-
-        // Copy email to clipboard on double-click
-        const emailLink = document.querySelector('.email-link');
-        emailLink.addEventListener('dblclick', function() {
-            navigator.clipboard.writeText('chengappa.thumisi@phy.iith.ac.in').then(() => {
-                const originalText = this.textContent;
-                this.textContent = 'Copied!';
-                setTimeout(() => { this.textContent = originalText; }, 2000);
-            });
-        });
-
-        // Parallax effect on scroll (subtle background movement)
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.body.style.backgroundPositionY = `${scrolled * 0.5}px`;
-        });
-
-        // Intersection Observer for additional fade-ins (if more sections added)
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('animate');
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
         });
-        document.querySelectorAll('.title, .department, .institute, .email-section, h2, .social-links').forEach(el => {
-            observer.observe(el);
+
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'fixed';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '-1';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        function createParticles(x, y) {
+            for (let i = 0; i < 5; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: (Math.random() - 0.5) * 8,
+                    life: 1,
+                    decay: Math.random() * 0.02 + 0.01
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.life * 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(2, 132, 199, ${p.life})`;
+                ctx.fill();
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= p.decay;
+                if (p.life <= 0) particles.splice(i, 1);
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        document.querySelectorAll('.content').forEach(content => {
+            content.addEventListener('mouseenter', (e) => {
+                const rect = content.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 </body>
 </html>
-
