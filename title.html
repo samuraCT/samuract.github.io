@@ -17,26 +17,26 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            /* Multi-color gradient background */
-            background: linear-gradient(-45deg, #ff007f, #7f00ff, #00d4ff, #00ff87, #ff0055);
+            /* Plain white/light neutral color gradient */
+            background: linear-gradient(-45deg, #ffffff, #f4f6f8, #e9ecef, #f8f9fa, #ffffff);
             background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
+            animation: gradientBG 15s ease infinite;
         }
 
-        /* Smooth continuous color transition animation */
+        /* Subtle smooth transition between white-related shades */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Card container to elevate text over dynamic background */
+        /* Card container styled to match the clean white theme */
         .card {
-            background: rgba(255, 255, 255, 0.85);
+            background: #ffffff;
             padding: 40px 60px;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
         }
 
         .title {
